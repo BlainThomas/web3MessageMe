@@ -5,7 +5,7 @@ export function App() {
   const { isConnected } = useAccount()
 
   return (
-    <>
+    <div className=''>
       <h1>{isConnected ? 'Connect Wallet' : 'Send Message'} </h1>
       <Connect />
 
@@ -17,6 +17,6 @@ export function App() {
           <NetworkSwitcher />
         </>
       )}
-    </>
+    </div>
   )
 }

@@ -1,15 +1,30 @@
-This is a [wagmi](https://wagmi.sh) + [Vite](https://vitejs.dev/) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
+# Web3MessageMe
 
-# Getting Started
+This is a React app that sends and verifyies messages on the blockchain.
 
-Run `npm run dev` in your terminal, and then open [localhost:5173](http://localhost:5173) in your browser.
+## Description 
 
-Once the webpage has loaded, changes made to files inside the `src/` directory (e.g. `src/App.tsx`) will automatically update the webpage.
+Connect the wallet you would like to use and sign a message.
 
-# Learn more
+Send the message, the hash, and your address to a reciever. They are then
+ able to verify it was sent from that wallet.
 
-To learn more about [Vite](https://vitejs.dev/) or [wagmi](https://wagmi.sh), check out the following resources:
+The uses cases of this would be to verify a request that is being made or
+ was made in the past. This would allow verification of supplychains or
+  request for fund transfers at a bank.
 
-- [wagmi Documentation](https://wagmi.sh) – learn about wagmi Hooks and API.
-- [wagmi Examples](https://wagmi.sh/examples/connect-wallet) – a suite of simple examples using wagmi.
-- [Vite Documentation](https://vitejs.dev/) – learn about Vite features and API.
+<br/>
+
+[Live Link]()
+
+<br/>
+
+[Portfolio](https://blain-thomas.vercel.app/)
+
+<br/>
+
+[GitHub Link](https://github.com/BlainThomas)
+
+<br/>
+
+<img src="https://github.com/BlainThomas/BlainThomas/blob/master/logos/TypeScript.png" alt="drawing" width="40"/>
