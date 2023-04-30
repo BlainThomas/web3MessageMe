@@ -8,7 +8,6 @@ interface MessageDataProps {
 }
 
 export function SignMessage(): JSX.Element {
-  const [copied, setCopied] = useState(false);
 
   const recoveredAddress = React.useRef<string>();
   const { data, error, isLoading, signMessage } = useSignMessage({
@@ -34,13 +33,15 @@ export function SignMessage(): JSX.Element {
       const handleCopyClick = () => {
         navigator.clipboard.writeText(text);
         setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
       };
   
     return (
-      <div onClick={handleCopyClick}>
-        {isCopied ? "Copied!" : "Click to copy"}
+      <div className='copy-data' onClick={handleCopyClick}>
         <h3>{header}</h3>
-        <div>{text}</div>
+        <div className='signature'>{text}</div>
+        <div className='copy-text' >{isCopied ? "Copied!" : "Click to copy"}
+        </div>
       </div>
     );
   };
@@ -61,12 +62,8 @@ export function SignMessage(): JSX.Element {
         </button>
         {data && (
           <div className='message'>
-            <MessageData header="Recovered Address" text="Text 1" />
+            <MessageData header="Your Address" text={recoveredAddress.current || ""} />
             <MessageData header="Signature" text={data} />
-            <h3>Recovered Address</h3>
-            <div>{recoveredAddress.current}</div>
-            <h3>Signature</h3>
-            <div className='signature'>{data}</div>
           </div>
         )}
         {error && <div>{error.message}</div>}

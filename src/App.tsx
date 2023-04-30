@@ -1,10 +1,10 @@
 import { useAccount } from 'wagmi'
 import { useState } from 'react'
 import './App.css'
-import { Connect, Connected, SignMessage, VerifyMessage } from './components'
+import { Connect, SignMessage, VerifyMessage } from './components'
 
 export function App() {
-  const { isConnected } = useAccount()
+  const { isConnected } = useAccount();
   const [ signMessage, setSignMessage ] = useState<boolean>(true);
 
   function handleMessageType(){
@@ -14,10 +14,9 @@ export function App() {
   return (
     <div id='body'>
       <div className='container'>
-        {isConnected ? 
-        (
+        <Connect />
+        {isConnected && 
           <>
-            <Connected />
             <button onClick={handleMessageType}>
               {signMessage ? 'Verify a Message' : 'Sign a Message'}
             </button>
@@ -25,9 +24,7 @@ export function App() {
             {signMessage ? <SignMessage /> : <VerifyMessage />}
             </div>
           </>
-        ) : (
-          <Connect />
-        )}
+        }
       </div>
     </div>
   )

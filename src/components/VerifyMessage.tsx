@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ethers } from "ethers";
-import { ErrorMessage, SuccessMessage } from "./Messages/";
 
 interface VerifyMessageProps {}
 
@@ -56,21 +55,21 @@ export const VerifyMessage: React.FC<VerifyMessageProps> = () => {
         name="message"
         placeholder="Message"
       />
-      <textarea
-        required
-        name="signature"
-        placeholder="Signature"
-      />
       <input
         required
         type="text"
         name="address"
         placeholder="Signer address"
       />
+      <textarea
+        required
+        name="signature"
+        placeholder="Signature"
+      />
       <button type="submit" >Verify signature</button>
       <div className="p-4 mt-4">
-        <ErrorMessage message={error} />
-        <SuccessMessage message={successMsg} />
+        <label>{error}</label>
+        <label>{successMsg}</label>
       </div>
     </form>
   );

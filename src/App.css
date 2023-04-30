@@ -49,10 +49,24 @@ button{
 }
 
 .message{
-    width: 100%;
+    width: 90%;
     margin: auto;
     background-color:  #5CDB95;
     color: #05386B;
+    padding: 5px 20px 20px;
     border-radius: 10px;
+}
+
+.signature{
+    inline-size: 100%;
+    overflow-wrap: break-word;
+}
+
+.copy-data{
+    cursor: pointer;
+}
+
+.copy-text{
+    font-size: 12px;
 }
 
