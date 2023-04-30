@@ -1,22 +1,31 @@
 import { useAccount } from 'wagmi'
-import { Account, Connect, VerifyMessage, NetworkSwitcher, SignMessage } from './components'
+import { useState } from 'react'
+import './App.css'
+import { Connect, SignMessage, VerifyMessage } from './components'
 
 export function App() {
-  const { isConnected } = useAccount()
+  const { isConnected } = useAccount();
+  const [ signMessage, setSignMessage ] = useState<boolean>(true);
+
+  function handleMessageType(){
+    setSignMessage(!signMessage);
+  }
 
   return (
-    <div className=''>
-      <h1>{isConnected ? 'Connect Wallet' : 'Send Message'} </h1>
-      <Connect />
-
-      {isConnected && (
-        <>
-          <SignMessage />
-          <VerifyMessage />
-          <Account />
-          <NetworkSwitcher />
-        </>
-      )}
+    <div id='body'>
+      <div className='container'>
+        <Connect />
+        {isConnected && 
+          <>
+            <button onClick={handleMessageType}>
+              {signMessage ? 'Verify a Message' : 'Sign a Message'}
+            </button>
+            <div className='message-container'>
+            {signMessage ? <SignMessage /> : <VerifyMessage />}
+            </div>
+          </>
+        }
+      </div>
     </div>
   )
 }

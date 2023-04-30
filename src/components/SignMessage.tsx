@@ -1,8 +1,14 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import { useSignMessage } from 'wagmi';
 import { verifyMessage } from 'ethers/lib/utils';
 
+interface MessageDataProps {
+  header: string;
+  text: string;
+}
+
 export function SignMessage(): JSX.Element {
+
   const recoveredAddress = React.useRef<string>();
   const { data, error, isLoading, signMessage } = useSignMessage({
     onSuccess: (data, variables) => {
@@ -21,24 +27,46 @@ export function SignMessage(): JSX.Element {
     }
   };
 
-  return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="message">Enter a message to sign</label>
-      <textarea
-        id="message"
-        name="message"
-        placeholder="The quick brown fox…"
-      />
-      <button disabled={isLoading}>{isLoading ? 'Check Wallet' : 'Sign Message'}</button>
-
-      {data && (
-        <div>
-          <div>Recovered Address: {recoveredAddress.current}</div>
-          <div>Signature: {data}</div>
+  const MessageData = ({ header, text }: MessageDataProps) => {
+      const [isCopied, setIsCopied] = useState(false);
+    
+      const handleCopyClick = () => {
+        navigator.clipboard.writeText(text);
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      };
+  
+    return (
+      <div className='copy-data' onClick={handleCopyClick}>
+        <h3>{header}</h3>
+        <div className='signature'>{text}</div>
+        <div className='copy-text' >{isCopied ? "Copied!" : "Click to copy"}
         </div>
-      )}
+      </div>
+    );
+  };
 
-      {error && <div>{error.message}</div>}
-    </form>
+  return (
+      <form className='flex flex-col' onSubmit={handleSubmit}>
+        <h2>Sign Message</h2>
+        <div className="my-3">
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Enter a message to sign"
+          />
+        </div>
+        <button
+          type="submit"
+          disabled={isLoading}>{isLoading ? 'Check Wallet' : 'Sign Message'}
+        </button>
+        {data && (
+          <div className='message'>
+            <MessageData header="Your Address" text={recoveredAddress.current || ""} />
+            <MessageData header="Signature" text={data} />
+          </div>
+        )}
+        {error && <div>{error.message}</div>}
+      </form>
   );
 }
