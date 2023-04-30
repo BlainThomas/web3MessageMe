@@ -50,51 +50,27 @@ export const VerifyMessage: React.FC<VerifyMessageProps> = () => {
 
   return (
     <form className="m-4" onSubmit={handleVerification}>
-      <div className="credit-card w-full shadow-lg mx-auto rounded-xl bg-white">
-        <main className="mt-4 p-4">
-          <h1 className="text-xl font-semibold text-gray-700 text-center">
-            Verify signature
-          </h1>
-          <div className="">
-            <div className="my-3">
-              <textarea
-                required
-                name="message"
-                className="textarea w-full h-24 textarea-bordered focus:ring focus:outline-none"
-                placeholder="Message"
-              />
-            </div>
-            <div className="my-3">
-              <textarea
-                required
-                name="signature"
-                className="textarea w-full h-24 textarea-bordered focus:ring focus:outline-none"
-                placeholder="Signature"
-              />
-            </div>
-            <div className="my-3">
-              <input
-                required
-                type="text"
-                name="address"
-                className="textarea w-full input input-bordered focus:ring focus:outline-none"
-                placeholder="Signer address"
-              />
-            </div>
-          </div>
-        </main>
-        <footer className="p-4">
-          <button
-            type="submit"
-            className="btn btn-primary submit-button focus:ring focus:outline-none w-full"
-          >
-            Verify signature
-          </button>
-        </footer>
-        <div className="p-4 mt-4">
-          <ErrorMessage message={error} />
-          <SuccessMessage message={successMsg} />
-        </div>
+      <h2>Verify signature</h2>
+      <textarea
+        required
+        name="message"
+        placeholder="Message"
+      />
+      <textarea
+        required
+        name="signature"
+        placeholder="Signature"
+      />
+      <input
+        required
+        type="text"
+        name="address"
+        placeholder="Signer address"
+      />
+      <button type="submit" >Verify signature</button>
+      <div className="p-4 mt-4">
+        <ErrorMessage message={error} />
+        <SuccessMessage message={successMsg} />
       </div>
     </form>
   );

@@ -1,5 +1,5 @@
 export { Account } from './Account'
 export { Connect } from './Connect'
+export { Connected } from './Connected'
 export { SignMessage } from './SignMessage'
-export { NetworkSwitcher } from './NetworkSwitcher'
 export { VerifyMessage } from './VerifyMessage'

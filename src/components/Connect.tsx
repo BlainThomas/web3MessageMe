@@ -1,20 +1,14 @@
-import { useAccount, useConnect, useDisconnect } from 'wagmi'
+import { useAccount, useConnect } from 'wagmi'
 
 export function Connect() {
-  const { connector, isConnected } = useAccount()
+  const { connector } = useAccount()
   const { connect, connectors, error, isLoading, pendingConnector } =
     useConnect()
-  const { disconnect } = useDisconnect()
 
   return (
     <div>
+      <h1>Connect Wallet</h1>
       <div>
-        {isConnected && (
-          <button onClick={() => disconnect()}>
-            Disconnect from {connector?.name}
-          </button>
-        )}
-
         {connectors
           .filter((x) => x.ready && x.id !== connector?.id)
           .map((x) => (
@@ -24,7 +18,6 @@ export function Connect() {
             </button>
           ))}
       </div>
-
       {error && <div>{error.message}</div>}
     </div>
   )
